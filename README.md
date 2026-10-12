@@ -11,24 +11,26 @@ An end-to-end sales analytics project built using **dbt Core, Google BigQuery an
 
 ## Data Architecture
 
+```text
 BigQuery Raw Data
 ├── customers
 ├── orders
 └── products
-│
-▼
+       │
+       ▼
 dbt Staging Layer (Views)
 ├── stg_customers
 ├── stg_orders
 └── stg_products
-│
-▼
+       │
+       ▼
 Sales Mart (Table)
 └── fct_sales
-│
-▼
+       │
+       ▼
 Incremental Sales Mart
 └── fct_sales_incremental
+```
 
 Additional components:
 
@@ -77,30 +79,33 @@ Generated dbt documentation with model descriptions, column metadata, tests and 
 
 ## Project Structure
 
+```text
 sales_analytics/
 ├── macros/
-│ └── generate_schema_name.sql
+│   └── generate_schema_name.sql
 ├── models/
-│ ├── staging/
-│ │ ├── sources.yml
-│ │ ├── schema.yml
-│ │ ├── stg_customers.sql
-│ │ ├── stg_orders.sql
-│ │ └── stg_products.sql
-│ └── marts/
-│ ├── fct_sales.sql
-│ └── fct_sales_incremental.sql
+│   ├── staging/
+│   │   ├── sources.yml
+│   │   ├── schema.yml
+│   │   ├── stg_customers.sql
+│   │   ├── stg_orders.sql
+│   │   └── stg_products.sql
+│   └── marts/
+│       ├── fct_sales.sql
+│       └── fct_sales_incremental.sql
 ├── seeds/
-│ └── country_lookup.csv
+│   └── country_lookup.csv
 ├── snapshots/
-│ └── customers_snapshot.sql
+│   └── customers_snapshot.sql
 ├── dbt_project.yml
 └── README.md
+```
 
 ## Running the Project
 
 Requires dbt Core, the BigQuery adapter, access to a Google Cloud project and a locally configured dbt profile.
 
+```bash
 pip install dbt-bigquery
 
 dbt debug
@@ -110,6 +115,7 @@ dbt test
 dbt snapshot
 dbt docs generate
 dbt docs serve
+```
 
 The source BigQuery tables (`customers`, `orders`, `products`) must exist before running the models. Database and dataset configuration should be adjusted for the target environment.
 
