@@ -1,0 +1,11 @@
+
+version: 2
+
+sources:
+  - name: raw_data
+    database: dbt-bigquery-project-511221
+    schema: raw_data
+    tables:
+      - name: customers
+      - name: orders
+      - name: products

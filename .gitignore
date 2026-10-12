@@ -1,0 +1,21 @@
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# dbt generated files
+target/
+dbt_packages/
+logs/
+
+# Local credentials and secrets
+.env
+.env.*
+profiles.yml
+*.json
+!package.json
+
+# IDE files
+.idea/
+.vscode/
