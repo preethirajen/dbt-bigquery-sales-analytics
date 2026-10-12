@@ -1,0 +1,28 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt
+        run: pip install dbt-bigquery==1.12.1
+
+      - name: Validate dbt project structure
+        run: |
+          python -c "import yaml; yaml.safe_load(open('dbt_project.yml'))"
+          python -m compileall -q .
